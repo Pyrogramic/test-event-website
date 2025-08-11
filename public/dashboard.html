@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - College Event Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2><a href="/">EventHub</a></h2>
+                </div>
+                <div class="nav-menu">
+                    <span class="nav-user" id="navUser">Loading...</span>
+                    <button class="btn btn-secondary btn-sm" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="dashboard-container">
+            <aside class="dashboard-sidebar">
+                <nav class="dashboard-nav">
+                    <a href="#overview" class="dashboard-nav-link active" data-tab="overview">
+                        Overview
+                    </a>
+                    <a href="#events" class="dashboard-nav-link" data-tab="events">
+                        Events
+                    </a>
+                    <a href="#registrations" class="dashboard-nav-link" data-tab="registrations">
+                        Registrations
+                    </a>
+                    <a href="#admins" class="dashboard-nav-link owner-only" data-tab="admins">
+                        Admins
+                    </a>
+                </nav>
+            </aside>
+
+            <div class="dashboard-content">
+                <!-- Overview Tab -->
+                <div class="dashboard-tab active" id="overview">
+                    <div class="dashboard-header">
+                        <h1>Dashboard Overview</h1>
+                    </div>
+                    
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="loading">Loading stats...</div>
+                    </div>
+                </div>
+
+                <!-- Events Tab -->
+                <div class="dashboard-tab" id="events">
+                    <div class="dashboard-header">
+                        <h1>Manage Events</h1>
+                        <button class="btn btn-primary" id="createEventBtn">Create Event</button>
+                    </div>
+                    
+                    <div class="events-list" id="eventsList">
+                        <div class="loading">Loading events...</div>
+                    </div>
+                </div>
+
+                <!-- Registrations Tab -->
+                <div class="dashboard-tab" id="registrations">
+                    <div class="dashboard-header">
+                        <h1>Manage Registrations</h1>
+                        <div class="filter-tabs">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="approved">Approved</button>
+                            <button class="filter-btn" data-filter="declined">Declined</button>
+                        </div>
+                    </div>
+                    
+                    <div class="registrations-container" id="registrationsContainer">
+                        <div class="loading">Loading registrations...</div>
+                    </div>
+                </div>
+
+                <!-- Admins Tab (Owner Only) -->
+                <div class="dashboard-tab owner-only" id="admins">
+                    <div class="dashboard-header">
+                        <h1>Manage Admins</h1>
+                        <button class="btn btn-primary" id="createAdminBtn">Create Admin</button>
+                    </div>
+                    
+                    <div class="admins-list" id="adminsList">
+                        <div class="loading">Loading admins...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="eventModalTitle">Create Event</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="eventForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title *</label>
+                        <input type="text" id="eventTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventVenue">Venue *</label>
+                        <input type="text" id="eventVenue" name="venue" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventDescription">Description *</label>
+                    <textarea id="eventDescription" name="description" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Event Date *</label>
+                        <input type="datetime-local" id="eventDate" name="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registrationDeadline">Registration Deadline *</label>
+                        <input type="datetime-local" id="registrationDeadline" name="registrationDeadline" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registrationType">Registration Type *</label>
+                        <select id="registrationType" name="registrationType" required>
+                            <option value="individual">Individual</option>
+                            <option value="group">Group</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="maxParticipants">Max Participants (Optional)</label>
+                        <input type="number" id="maxParticipants" name="maxParticipants" min="1">
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Admin</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="adminForm" class="modal-form">
+                <div class="form-group">
+                    <label for="adminUserId">Admin User ID *</label>
+                    <input type="text" id="adminUserId" name="userId" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminPassword">Password *</label>
+                    <input type="password" id="adminPassword" name="password" required>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Admin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

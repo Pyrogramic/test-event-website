@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>EventHub</h2>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/login" class="nav-link">Admin Login</a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">College Event Management</h1>
+                    <p class="hero-subtitle">Discover and register for exciting events happening at our college</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="events-section">
+            <div class="container">
+                <div class="section-tabs">
+                    <button class="tab-btn active" data-tab="upcoming">Upcoming Events</button>
+                    <button class="tab-btn" data-tab="past">Past Events</button>
+                </div>
+
+                <div class="tab-content active" id="upcoming">
+                    <div class="events-grid" id="upcomingEvents">
+                        <div class="loading">Loading events...</div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="past">
+                    <div class="events-grid" id="pastEvents">
+                        <div class="loading">Loading events...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 College Event Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
