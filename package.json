@@ -21,6 +21,7 @@
     "helmet": "^7.1.0"
   },
   "devDependencies": {
+    "remix": "^2.x.x",
     "nodemon": "^3.0.2"
   }
 }
